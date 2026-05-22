@@ -33,3 +33,16 @@ final class BluetoothService implements BluetoothRepo {
     }
   }
 }
+
+
+final class NullBluetoothService implements BluetoothRepo {
+  @override
+  Future<bool?> requestPermission() async {
+    return null;
+  }
+
+  @override
+  Future<bool?> statusOfBlueTooth() async {
+    return null;
+  }
+}

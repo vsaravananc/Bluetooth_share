@@ -1,4 +1,4 @@
 abstract class BluetoothRepo {
-  Future<bool> statusOfBlueTooth();
-  Future<bool> requestPermission();
+  Future<bool?> statusOfBlueTooth();
+  Future<bool?> requestPermission();
 }

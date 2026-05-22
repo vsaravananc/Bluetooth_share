@@ -1,7 +1,6 @@
 import 'dart:async';
-
 import 'package:bluetooh_share/core/assets/images.dart';
-import 'package:bluetooh_share/core/service/bluetooth_service.dart';
+import 'package:bluetooh_share/core/service/bluetooth_repo.dart';
 import 'package:bluetooh_share/core/theme/theme_extenstin.dart';
 import 'package:bluetooh_share/core/util/dependency_injection.dart';
 import 'package:flutter/material.dart';
@@ -30,7 +29,8 @@ class _DashboardBottomScreenState extends State<DashboardBottomScreen> {
   }
 
   Future<void> checkAndRequestBluetooth() async {
-    final bluetoothStatus = await getIt<BluetoothService>().statusOfBlueTooth();
+    final bluetoothStatus = await getIt<BluetoothRepo>().statusOfBlueTooth();
+    if (bluetoothStatus == null) return;
     if (!bluetoothStatus && mounted) {
       showModalBottomSheet(
         sheetAnimationStyle: const AnimationStyle(curve: Curves.bounceIn),
@@ -79,8 +79,9 @@ class _DashboardBottomScreenState extends State<DashboardBottomScreen> {
                         minimumSize: const Size.fromHeight(55),
                       ),
                       onPressed: () async {
-                        final requestResponse = await getIt<BluetoothService>()
+                        final requestResponse = await getIt<BluetoothRepo>()
                             .requestPermission();
+                        if (requestResponse == null) return;
                         if (requestResponse && bottomContext.mounted) {
                           bottomContext.pop();
                         }
