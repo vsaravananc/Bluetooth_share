@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:bluetooh_share/core/data/sharedpreference_data.dart';
 import 'package:bluetooh_share/core/routes/route_config.dart';
+import 'package:bluetooh_share/core/service/bluetooth/bluetooth_repo.dart';
 import 'package:bluetooh_share/core/theme/theme_extenstin.dart';
 import 'package:bluetooh_share/core/util/app_constant.dart';
 import 'package:bluetooh_share/core/util/dependency_injection.dart';
@@ -83,6 +84,19 @@ class _PrefernceScreenState extends State<PrefernceScreen> {
     }
     final String name = _nameController.text.trim();
     unawaited(getIt.get<SharedpreferenceData>().set(USER_NAME, name));
-    context.go(RouteConfig.send);
+    getIt<BluetoothRepo>().setBlueToothName(name).then((value) {
+      debugPrint("Bluetooth name set result: $value");
+      if (value != null && !value && mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text(
+              "Failed to set Bluetooth name. Please check permissions and try again.",
+            ),
+          ),
+        );
+      } else if (mounted) {
+        context.go(RouteConfig.send);
+      }
+    });
   }
 }

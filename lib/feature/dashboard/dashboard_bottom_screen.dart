@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:bluetooh_share/core/assets/images.dart';
-import 'package:bluetooh_share/core/service/bluetooth_repo.dart';
+import 'package:bluetooh_share/core/service/bluetooth/bluetooth_repo.dart';
 import 'package:bluetooh_share/core/theme/theme_extenstin.dart';
 import 'package:bluetooh_share/core/util/dependency_injection.dart';
 import 'package:flutter/material.dart';
@@ -42,16 +42,16 @@ class _DashboardBottomScreenState extends State<DashboardBottomScreen> {
         context: context,
         builder: (bottomContext) {
           return Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding: const EdgeInsets.only(left: 16.0, right: 16.0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 SizedBox(
-                  height: 180,
+                  height: 150,
                   child: Image.asset(
                     AppImages.permission,
                     fit: BoxFit.fitHeight,
-                    cacheHeight: 210,
+                    cacheHeight: 200,
                   ),
                 ),
                 Text(

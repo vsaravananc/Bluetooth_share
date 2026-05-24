@@ -12,7 +12,7 @@ abstract final class RouteConfig {
   static const String send = '/send';
 
   static GoRouter router = GoRouter(
-    initialLocation: send,
+    initialLocation: onboarding,
     redirect: (context, state) {
       return null;
     },
