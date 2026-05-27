@@ -56,7 +56,8 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const Spacer(flex: 2),
-                  Image.asset(onBoardingImages[index])
+                  RepaintBoundary(
+                    child: Image.asset(onBoardingImages[index])
                       .animate()
                       .fade()
                       .blurXY(begin: 20, end: 0, duration: 500.ms)
@@ -65,13 +66,16 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                         end: const Offset(1, 1),
                         duration: 500.ms,
                       ),
+                  ),
                   Text(
                     onBoardingTexts[index],
                     textAlign: TextAlign.center,
                     style: context.titleLarge,
                   ),
                   const Spacer(flex: 1),
-                  ElevatedButton(
+                  RepaintBoundary(
+                    child:
+                        ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           padding: const EdgeInsets.symmetric(
                             horizontal: 32,
@@ -93,6 +97,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                       .blurXY(begin: 20, end: 0)
                       .fade()
                       .scaleX(begin: 0.8, end: 1, duration: 500.ms),
+                  ),
                   const Spacer(flex: 2),
                 ],
               ),

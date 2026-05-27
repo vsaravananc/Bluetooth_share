@@ -1,3 +1,4 @@
+import 'package:bluetooh_share/feature/receive/widgets/profile_widget.dart';
 import 'package:flutter/material.dart';
 
 class ReceiveScreen extends StatelessWidget {
@@ -5,6 +6,6 @@ class ReceiveScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(body: Center(child: Text("Receive Screen")));
+    return const Scaffold(body: Center(child: ProfileWidget()));
   }
 }

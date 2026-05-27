@@ -1,7 +1,7 @@
 import 'package:bluetooh_share/feature/dashboard/dashboard_bottom_screen.dart';
 import 'package:bluetooh_share/feature/onboarding/screens/onboarding_screen.dart';
 import 'package:bluetooh_share/feature/onboarding/screens/prefernce_screen.dart';
-import 'package:bluetooh_share/feature/receive/receive_screen.dart';
+import 'package:bluetooh_share/feature/receive/screens/receive_screen.dart';
 import 'package:bluetooh_share/feature/send/send_screen.dart';
 import 'package:go_router/go_router.dart';
 

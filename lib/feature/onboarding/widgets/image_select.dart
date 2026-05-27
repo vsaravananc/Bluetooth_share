@@ -1,7 +1,7 @@
 import 'package:bluetooh_share/core/assets/images.dart';
 import 'package:bluetooh_share/core/theme/app_color.dart';
 import 'package:bluetooh_share/core/theme/theme_extenstin.dart';
-import 'package:bluetooh_share/feature/onboarding/cubit/prefrence_cubit.dart';
+import 'package:bluetooh_share/cubit/profile_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hugeicons/hugeicons.dart';
@@ -41,11 +41,11 @@ class ImageSelect extends StatelessWidget {
                 ),
                 itemCount: personImageOptions.length,
                 itemBuilder: (gridContext, index) {
-                  return BlocBuilder<PrefrenceCubit, int>(
+                  return BlocBuilder<ProfileCubit, int>(
                     builder: (context, state) {
                       return GestureDetector(
                         onTap: () {
-                          context.read<PrefrenceCubit>().onTap(index);
+                          context.read<ProfileCubit>().onTap(index);
                           Navigator.pop(bottomContext);
                         },
                         child: Image.asset(
@@ -75,7 +75,7 @@ class ImageSelect extends StatelessWidget {
             shape: BoxShape.circle,
             border: Border.all(color: AppColor.borderColor, width: 2),
           ),
-          child: BlocBuilder<PrefrenceCubit, int>(
+          child: BlocBuilder<ProfileCubit, int>(
             builder: (context, state) {
               return Image.asset(personImageOptions[state], fit: BoxFit.cover);
             },

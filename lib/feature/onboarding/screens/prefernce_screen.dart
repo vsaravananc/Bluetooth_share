@@ -85,12 +85,11 @@ class _PrefernceScreenState extends State<PrefernceScreen> {
     final String name = _nameController.text.trim();
     unawaited(getIt.get<SharedpreferenceData>().set(USER_NAME, name));
     getIt<BluetoothRepo>().setBlueToothName(name).then((value) {
-      debugPrint("Bluetooth name set result: $value");
       if (value != null && !value && mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
             content: Text(
-              "Failed to set Bluetooth name. Please check permissions and try again.",
+              "Check Bluetooth is turned on and try again",
             ),
           ),
         );

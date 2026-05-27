@@ -1,14 +1,10 @@
 package com.example.bluetooh_share
 
-import android.Manifest
 import android.annotation.SuppressLint
 import android.bluetooth.BluetoothAdapter
 import android.bluetooth.BluetoothManager
-import android.content.pm.PackageManager
 import android.os.Bundle
 import android.util.Log
-import androidx.annotation.RequiresPermission
-import androidx.core.app.ActivityCompat
 import io.flutter.embedding.android.FlutterActivity
 import io.flutter.embedding.engine.FlutterEngine
 import io.flutter.plugin.common.MethodChannel
@@ -50,7 +46,7 @@ class MainActivity : FlutterActivity(){
                         result.success(blueToothResult)
                     }
                     else -> {
-                        result.notImplemented();
+                        result.notImplemented()
                     }
                 }
         }
@@ -63,7 +59,13 @@ class MainActivity : FlutterActivity(){
 
     @SuppressLint("MissingPermission")
     fun setBluetoothName(name : String) : Boolean {
-        blueToothAdapter.name = name
-        return  blueToothAdapter.name == name;
+          Log.d("BlueToothName", "Name: ${blueToothAdapter.name}")
+        if(blueToothAdapter.state == BluetoothAdapter.STATE_OFF){
+            Log.d("Bluetooth State", "Bluetooth is OFF")
+            return false
+        }else {
+            Log.d("Bluetooth State", "Bluetooth is ON")
+            return  blueToothAdapter.setName(name)
+        }
     }
 }
