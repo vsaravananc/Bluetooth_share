@@ -1,5 +1,6 @@
 import 'package:bluetooh_share/core/service/bluetooth/bluetooth_repo.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter/widgets.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 final class BluetoothService implements BluetoothRepo {
@@ -8,6 +9,7 @@ final class BluetoothService implements BluetoothRepo {
   );
   final String _checkBluetoothTurnOnMethod = 'checkBluetoothTurnOn';
   final String _setBluetoothNameMethod = 'setBluetoothName';
+  final String _getBluetoothDevicesMethod = 'getBlueToothDevicesBound';
 
   @override
   Future<bool> statusOfBlueTooth() async {
@@ -63,6 +65,15 @@ final class BluetoothService implements BluetoothRepo {
       return false;
     }
   }
+  
+  @override
+  Future<void> getBlueToothDevices() async {
+    try {
+      await _methodChannel.invokeMethod(_getBluetoothDevicesMethod);
+    } catch (e) {
+      debugPrint("Error Getting Bluetooth Devices: $e");
+    }
+  }
 }
 
 final class NullBluetoothService implements BluetoothRepo {
@@ -84,5 +95,11 @@ final class NullBluetoothService implements BluetoothRepo {
   @override
   Future<bool?> setBlueToothName(String name) async {
     return null;
+  }
+  
+  @override
+  Future<void> getBlueToothDevices() {
+    // TODO: implement getBlueToothDevices
+    throw UnimplementedError();
   }
 }

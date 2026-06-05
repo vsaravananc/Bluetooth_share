@@ -3,4 +3,5 @@ abstract class BluetoothRepo {
   Future<bool?> requestPermission();
   Future<bool?> checkBlueToothTrunOn();
   Future<bool?> setBlueToothName(String name);
+  Future<void> getBlueToothDevices();
 }
