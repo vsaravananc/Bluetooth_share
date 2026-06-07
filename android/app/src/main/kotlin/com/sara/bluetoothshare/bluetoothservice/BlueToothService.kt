@@ -1,4 +1,4 @@
-package com.example.bluetooh_share.bluetoothservice
+package com.sara.bluetoothshare.bluetoothservice
 
 import android.bluetooth.BluetoothAdapter
 import android.content.BroadcastReceiver

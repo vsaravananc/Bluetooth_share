@@ -4,7 +4,11 @@ import 'package:bluetooh_share/core/theme/theme_dark.dart';
 import 'package:bluetooh_share/core/util/dependency_injection.dart';
 import 'package:flutter/material.dart';
 
-void main() async {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await DependencyInjection.init(() => runApp(const MyApp()));
+
   FlutterError.onError = (FlutterErrorDetails details) {
     debugPrint(
       "\u001B[32m -------------- Flutter Error -------------- \u001B[0m",
@@ -20,10 +24,8 @@ void main() async {
     debugPrint(error.toString());
     debugPrint(stack.toString());
     debugPrint("\u001B[32m -------------- Dart Close -------------- \u001B[0m");
-    return true;
+    return false;
   };
-
-  await DependencyInjection.init(() => runApp(const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -32,6 +34,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return DependencyInjection.inject(
       MaterialApp.router(
+        // showPerformanceOverlay: true,
         title: 'Local Connection',
         darkTheme: ThemeDark.darkTheme,
         themeMode: ThemeMode.dark,

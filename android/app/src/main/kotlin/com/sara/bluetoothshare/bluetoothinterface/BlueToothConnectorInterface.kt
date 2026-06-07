@@ -1,5 +1,5 @@
-package com.example.bluetooh_share.bluetoothinterface
-import com.example.bluetooh_share.model.BlueToothDeviceModel
+package com.sara.bluetoothshare.bluetoothinterface
+import com.sara.bluetoothshare.model.BlueToothDeviceModel
 
 interface BlueToothConnectorInterface  {
     fun isBlueToothOn(): Boolean

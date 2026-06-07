@@ -24,6 +24,7 @@ abstract final class DependencyInjection {
     } else {
       getIt.registerSingleton<BluetoothRepo>(NullBluetoothService());
     }
+    await getIt.allReady();
     call();
   }
 

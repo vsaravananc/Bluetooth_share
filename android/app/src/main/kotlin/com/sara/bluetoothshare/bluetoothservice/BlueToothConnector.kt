@@ -1,18 +1,17 @@
-package com.example.bluetooh_share.bluetoothservice
+package com.sara.bluetoothshare.bluetoothservice
 
 import android.Manifest
 import android.annotation.SuppressLint
 import android.bluetooth.BluetoothAdapter
-import android.bluetooth.BluetoothDevice
 import android.util.Log
 import androidx.annotation.RequiresPermission
-import com.example.bluetooh_share.bluetoothinterface.BlueToothConnectorInterface
-import com.example.bluetooh_share.model.BlueToothDeviceModel
+import com.sara.bluetoothshare.bluetoothinterface.BlueToothConnectorInterface
+import com.sara.bluetoothshare.model.BlueToothDeviceModel
 
 class BlueToothConnector(val blueToothAdapter: BluetoothAdapter?) : BlueToothConnectorInterface {
 
     init {
-        require(blueToothAdapter == null) { "BlueToothAdapter required to function" }
+        require(blueToothAdapter != null) { "BlueToothAdapter required to function" }
     }
 
 

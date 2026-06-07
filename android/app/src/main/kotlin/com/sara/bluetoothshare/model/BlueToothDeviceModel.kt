@@ -1,4 +1,4 @@
-package com.example.bluetooh_share.model
+package com.sara.bluetoothshare.model
 
 data class BlueToothDeviceModel(
     val name : String,

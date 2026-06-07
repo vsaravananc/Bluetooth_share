@@ -5,7 +5,7 @@ import 'package:permission_handler/permission_handler.dart';
 
 final class BluetoothService implements BluetoothRepo {
   final MethodChannel _methodChannel = const MethodChannel(
-    'com.example.bluetooh_share/bluetooth',
+    'com.sara.blueToothShare/bluetooth',
   );
   final String _checkBluetoothTurnOnMethod = 'checkBluetoothTurnOn';
   final String _setBluetoothNameMethod = 'setBluetoothName';
@@ -69,7 +69,8 @@ final class BluetoothService implements BluetoothRepo {
   @override
   Future<void> getBlueToothDevices() async {
     try {
-      await _methodChannel.invokeMethod(_getBluetoothDevicesMethod);
+     final devices = await _methodChannel.invokeMethod(_getBluetoothDevicesMethod);
+      debugPrint("Bluetooth Devices: $devices");
     } catch (e) {
       debugPrint("Error Getting Bluetooth Devices: $e");
     }
@@ -99,7 +100,6 @@ final class NullBluetoothService implements BluetoothRepo {
   
   @override
   Future<void> getBlueToothDevices() {
-    // TODO: implement getBlueToothDevices
     throw UnimplementedError();
   }
 }
