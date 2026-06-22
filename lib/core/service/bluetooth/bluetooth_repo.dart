@@ -1,7 +1,9 @@
+import 'package:bluetooh_share/entitys/bluetooth_entity.dart';
+
 abstract class BluetoothRepo {
   Future<bool?> statusOfBlueTooth();
   Future<bool?> requestPermission();
   Future<bool?> checkBlueToothTrunOn();
   Future<bool?> setBlueToothName(String name);
-  Future<void> getBlueToothDevices();
+  Future<List<BluetoothEntity>?> getBlueToothDevices();
 }

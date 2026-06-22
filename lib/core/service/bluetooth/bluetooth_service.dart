@@ -1,6 +1,8 @@
+import 'package:bluetooh_share/core/helper/convertor.dart';
 import 'package:bluetooh_share/core/service/bluetooth/bluetooth_repo.dart';
+import 'package:bluetooh_share/entitys/bluetooth_entity.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 final class BluetoothService implements BluetoothRepo {
@@ -67,15 +69,24 @@ final class BluetoothService implements BluetoothRepo {
   }
   
   @override
-  Future<void> getBlueToothDevices() async {
+  Future<List<BluetoothEntity>?> getBlueToothDevices() async {
     try {
      final devices = await _methodChannel.invokeMethod(_getBluetoothDevicesMethod);
-      debugPrint("Bluetooth Devices: $devices");
+      return await compute(
+        convertListOfBlueToothEntity,
+        (devices as List<Object?>),
+      );
+    } on PlatformException catch (e) {
+      debugPrint("Error Getting Bluetooth Devices: $e");
+      return null;
     } catch (e) {
       debugPrint("Error Getting Bluetooth Devices: $e");
+      return null;
     }
   }
 }
+
+
 
 final class NullBluetoothService implements BluetoothRepo {
   @override
@@ -99,7 +110,8 @@ final class NullBluetoothService implements BluetoothRepo {
   }
   
   @override
-  Future<void> getBlueToothDevices() {
-    throw UnimplementedError();
+  Future<List<BluetoothEntity>?> getBlueToothDevices() async {
+    return null;
   }
 }
+
