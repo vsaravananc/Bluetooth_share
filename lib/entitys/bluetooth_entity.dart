@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 
 class BluetoothEntity {
   const BluetoothEntity({required this.name, required this.address});
