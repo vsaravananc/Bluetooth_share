@@ -6,4 +6,5 @@ abstract class BluetoothRepo {
   Future<bool?> checkBlueToothTrunOn();
   Future<bool?> setBlueToothName(String name);
   Future<List<BluetoothEntity>?> getBlueToothDevices();
+  Future<void> startLookingNewDevice();
 }

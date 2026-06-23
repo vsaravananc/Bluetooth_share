@@ -12,6 +12,7 @@ final class BluetoothService implements BluetoothRepo {
   final String _checkBluetoothTurnOnMethod = 'checkBluetoothTurnOn';
   final String _setBluetoothNameMethod = 'setBluetoothName';
   final String _getBluetoothDevicesMethod = 'getBlueToothDevicesBound';
+  final String _startLookingNewDeviceMethod = 'startDiscovery';
 
   @override
   Future<bool> statusOfBlueTooth() async {
@@ -84,6 +85,20 @@ final class BluetoothService implements BluetoothRepo {
       return null;
     }
   }
+  
+  @override
+  Future<void> startLookingNewDevice() async {
+    try {
+      final value = await _methodChannel.invokeMethod(
+        _startLookingNewDeviceMethod,
+      );
+      debugPrint("Sucessfully start looking new Device : $value");
+    } on PlatformException catch (e) {
+      debugPrint("Error on platformException Starting looing new Device ; $e");
+    } catch (e) {
+      debugPrint("Error on Starting looing new Device ; $e");
+    }
+  }
 }
 
 
@@ -113,5 +128,8 @@ final class NullBluetoothService implements BluetoothRepo {
   Future<List<BluetoothEntity>?> getBlueToothDevices() async {
     return null;
   }
+  
+  @override
+  Future<void> startLookingNewDevice() async {}
 }
 

@@ -5,3 +5,7 @@ help:
 
 run:
 	flutter run
+
+clean-get:
+	flutter clean && flutter pub get
+

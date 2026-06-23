@@ -62,4 +62,30 @@ class BlueToothConnector(val blueToothAdapter: BluetoothAdapter?) : BlueToothCon
         }
     }
 
+    @RequiresPermission(Manifest.permission.BLUETOOTH_SCAN)
+    override fun startLookingDevices(): Boolean {
+        try {
+            Log.d("FROM ANDROID BLUE TOOTH IS DISCOVERING :","${blueToothAdapter?.isDiscovering()}")
+            if(blueToothAdapter?.isDiscovering() ?: false){
+                val blueToothCancel =  blueToothAdapter.cancelDiscovery()
+                Log.d("FROM ANDROID CANCEL BLUETOOTH FUNCTION :","$blueToothCancel")
+                val blueToothStatus = blueToothAdapter.startDiscovery()
+                Log.d("FROM ANDROID INSIDE FUNCTION :","$blueToothStatus")
+                return blueToothStatus
+            }else{
+                val blueToothStatus = blueToothAdapter?.startDiscovery()
+                Log.d("FROM ANDROID INSIDE FUNCTION :","$blueToothStatus")
+                return blueToothStatus ?: false
+            }
+
+        }catch (e : Exception){
+            return false;
+        }
+    }
+
+
+    private fun setUpBoardCastReceiver() {
+        val receiver : BlueToothReceiver = BlueToothReceiver()
+    }
+
 }

@@ -19,16 +19,8 @@ class SendScreen extends StatelessWidget {
       body: Center(
         child: TextButton(
           onPressed: () async {
-            try {
-              var isBluetoothOn = await getIt<BluetoothRepo>()
-                  .checkBlueToothTrunOn();
-              if (isBluetoothOn == null) return;
-              if (!isBluetoothOn && context.mounted) {
-                SendScreen.showSnackBar(context);
-              }
-            } catch (e) {
-              if (context.mounted) SendScreen.showSnackBar(context);
-            }
+            getIt<BluetoothRepo>().startLookingNewDevice();
+              
           },
           child: const Text("Send Screen"),
         ),

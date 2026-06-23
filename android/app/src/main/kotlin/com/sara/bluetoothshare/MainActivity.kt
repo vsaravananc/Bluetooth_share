@@ -2,6 +2,7 @@ package com.sara.bluetoothshare
 
 import android.annotation.SuppressLint
 import android.bluetooth.BluetoothManager
+import android.util.Log
 import com.sara.bluetoothshare.bluetoothservice.BlueToothConnector
 import io.flutter.embedding.android.FlutterActivity
 import io.flutter.embedding.engine.FlutterEngine
@@ -48,6 +49,12 @@ class MainActivity : FlutterActivity() {
                             )
                         }
                         result.success(mapOfDevice)
+                    }
+
+                    "startDiscovery" -> {
+                        val blueConnectionStarted = blueToothConnector.startLookingDevices()
+                        Log.d("FROM ANDROID THE STATUS OF START DISCOVERY","$blueConnectionStarted")
+                        result.success(blueConnectionStarted)
                     }
 
                     else -> {
